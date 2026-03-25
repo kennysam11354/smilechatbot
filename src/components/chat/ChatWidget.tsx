@@ -34,6 +34,7 @@ export default function ChatWidget() {
   }, []);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   // Auto-scroll to bottom
@@ -42,6 +43,17 @@ export default function ChatWidget() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isLoading]);
+
+  // Focus input when window opens or loading finishes
+  useEffect(() => {
+    if (isOpen && !isLoading) {
+      // Add a slight delay to allow the window animation to complete
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, isLoading]);
 
   const sendMessage = useCallback(async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -110,6 +122,8 @@ export default function ChatWidget() {
     } finally {
       setIsLoading(false);
       abortRef.current = null;
+      // Focus back after loading
+      setTimeout(() => inputRef.current?.focus(), 0);
     }
   }, [input, messages, isLoading]);
 
@@ -197,6 +211,7 @@ export default function ChatWidget() {
             <form onSubmit={sendMessage} className="border-t bg-white p-4">
               <div className="flex gap-2">
                 <input
+                  ref={inputRef}
                   id="chat-input"
                   value={input}
                   onChange={e => setInput(e.target.value)}
