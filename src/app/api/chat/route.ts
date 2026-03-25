@@ -35,6 +35,9 @@ If you encounter a complaint, a complex inquiry, or something not covered in the
 2. Summarize this into a single natural sentence (e.g., "John Doe, 212-000-0000, john@email.com. TV mounting inquiry").
 3. ASK the customer to type "Send" to confirm.
 4. ONLY then call the 'sendComplaint' tool with that summary in the 'message' field.
+5. AFTER the tool runs, check the result:
+   - If success: true → Tell the user clearly: "✅ Your message has been sent successfully! Our team will contact you soon."
+   - If success: false → Tell the user: "❌ Sorry, there was an error sending your message. Please contact us directly at (917) 818-0994 or smilehandyman1000@gmail.com."
 
 ### MOBILE LIMITATION:
 Current User Device: ${isMobile ? 'MOBILE' : 'DESKTOP'}
@@ -50,6 +53,7 @@ ${manualContent}
     model: openai('gpt-4o-mini'),
     messages,
     system: systemInstructions,
+    maxSteps: 3,
     tools: {
       sendComplaint: tool({
         description: 'Send a complaint or inquiry to the Smile Handyman team via email.',
