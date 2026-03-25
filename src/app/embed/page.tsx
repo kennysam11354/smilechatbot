@@ -4,10 +4,9 @@ import { useEffect } from 'react';
 
 export default function EmbedPage() {
   useEffect(() => {
-    // Make body transparent and pass-through clicks
+    // Make body transparent
     document.documentElement.style.background = 'transparent';
     document.body.style.background = 'transparent';
-    document.body.style.pointerEvents = 'none';
   }, []);
 
   return (
