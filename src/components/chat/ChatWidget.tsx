@@ -208,7 +208,6 @@ export default function ChatWidget() {
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   placeholder="Ask a question..."
-                  disabled={isLoading}
                   className="w-full rounded-full border border-gray-200 px-4 py-2 text-sm outline-none transition-all focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] disabled:opacity-50"
                   style={{ color: '#111827', backgroundColor: '#f9fafb', colorScheme: 'light' }}
                 />
