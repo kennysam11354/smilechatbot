@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"iframe\\\\|script.*src\\\\|chatbot\\\\|smailehandyman.*embed\\\\|embed.*chat\" /c/coding/supportnewyork.org/src --include=*.tsx --include=*.ts --include=*.jsx --include=*.js -n)",
+      "Bash(find /c/coding/supportnewyork.org -name *.html -o -name *embed* -o -name *bot* -o -name *chat*)",
+      "Bash(npm run:*)",
+      "Bash(curl -s http://localhost:3000 -o /dev/null -w \"%{http_code}\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(cmd //c where npm)",
+      "Bash(node -e \":*)",
+      "Bash(xargs grep:*)"
+    ]
+  }
+}
