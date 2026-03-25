@@ -185,6 +185,7 @@ export default function ChatWidget() {
             <form onSubmit={sendMessage} className="border-t bg-white p-4">
               <div className="flex gap-2">
                 <input
+                  id="chat-input"
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   placeholder="Ask a question..."
