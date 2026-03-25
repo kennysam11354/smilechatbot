@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "title": "Computer Repair & Tech",
+    "content": "Professional computer repair and installation services. We offer technical assistance specifically tailored for seniors and people with disabilities in Manhattan. Services include hardware repair, software troubleshooting, and new computer setup."
+  },
+  {
+    "id": "2",
+    "title": "Wi-Fi & Network Setup",
+    "content": "Expert Wi-Fi and network setup. We eliminate dead zones using mesh systems and professional router configuration. Providing home and small-to-medium business network installation across Manhattan."
+  },
+  {
+    "id": "3",
+    "title": "Exercise Equipment Assembly",
+    "content": "Professional assembly services for all types of indoor exercise equipment, including treadmills, stationary bikes, and home gym systems."
+  },
+  {
+    "id": "4",
+    "title": "Smart Home Devices",
+    "content": "Complete installation and configuration of smart locks, video doorbells, security cameras, and voice assistants like Alexa or Google Home."
+  },
+  {
+    "id": "5",
+    "title": "Furniture Assembly (IKEA/Wayfair/Amazon)",
+    "content": "Specialized furniture assembly for IKEA, Wayfair, and Amazon products. We provide fast and accurate assembly for New Yorkers."
+  },
+  {
+    "id": "6",
+    "title": "LED Light Installation",
+    "content": "Installation of LED strips, low-voltage under-cabinet lighting, and smart bulb setup to modernize your Manhattan home."
+  },
+  {
+    "id": "7",
+    "title": "About Smile Handyman",
+    "content": "Smile Handyman is a Manhattan-based local tech support and installation service. Our mission is to make home tech simple and stress-free for seniors and busy New Yorkers. We believe in fast, friendly service with high expertise."
+  },
+  {
+    "id": "8",
+    "title": "Service Guarantees & Pricing",
+    "content": "✓No Fix, No Fee: If we cannot solve your problem, you won't pay. ✓Transparent Pricing: Flat rates with no hidden fees. ✓Tested & Simplified: We ensure everything is tested and you know how to use it before we leave."
+  },
+  {
+    "id": "9",
+    "title": "Contact Information",
+    "content": "Location: Manhattan, NY. Phone: (917) 818-0994 (Text Only). Email: smilehandymanny@gmail.com. We respond within 24 hours."
+  },
+  {
+    "id": "10",
+    "title": "FAQ - Professionalism",
+    "content": "Are you professional? Yes, we specialize in friendly, fast help for everyday home tech like computer setup, TV mounting, and smart home devices."
+  }
+]
