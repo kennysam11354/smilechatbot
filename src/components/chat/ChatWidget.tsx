@@ -111,7 +111,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className="mb-4 flex h-[600px] w-[400px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100"
-            style={{ maxWidth: 'calc(100vw - 40px)', maxHeight: '80vh' }}
+            style={{ maxWidth: 'calc(100vw - 40px)', maxHeight: '80vh', colorScheme: 'light' }}
           >
             {/* Header */}
             <div className="flex items-center justify-between bg-[#1e3a8a] p-4 text-white">
@@ -189,8 +189,8 @@ export default function ChatWidget() {
                   onChange={e => setInput(e.target.value)}
                   placeholder="Ask a question..."
                   disabled={isLoading}
-                  className="w-full rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-900 outline-none transition-all focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] disabled:opacity-50"
-                  style={{ color: '#111827', backgroundColor: '#f9fafb' }}
+                  className="w-full rounded-full border border-gray-200 px-4 py-2 text-sm outline-none transition-all focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] disabled:opacity-50"
+                  style={{ color: '#111827', backgroundColor: '#f9fafb', colorScheme: 'light' }}
                 />
                 <button
                   type="submit"
