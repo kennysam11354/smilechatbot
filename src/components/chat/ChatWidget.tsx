@@ -18,8 +18,20 @@ type Message = {
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hideControl, setHideControl] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+
+  useEffect(() => {
+    // URL에 파라미터가 있으면 초기 상태 설정
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get('autoOpen') === 'true') {
+      setIsOpen(true);
+    }
+    if (searchParams.get('hideControl') === 'true') {
+      setHideControl(true);
+    }
+  }, []);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -210,17 +222,19 @@ export default function ChatWidget() {
       </AnimatePresence>
 
       {/* Toggle Button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          'flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-colors duration-300 focus:outline-none',
-          isOpen ? 'bg-gray-100 text-gray-600' : 'bg-[#1e3a8a] text-white'
-        )}
-      >
-        {isOpen ? <X size={24} /> : <MessageCircle size={28} />}
-      </motion.button>
+      {!hideControl && (
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsOpen(!isOpen)}
+          className={cn(
+            'flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-colors duration-300 focus:outline-none',
+            isOpen ? 'bg-gray-100 text-gray-600' : 'bg-[#1e3a8a] text-white'
+          )}
+        >
+          {isOpen ? <X size={24} /> : <MessageCircle size={28} />}
+        </motion.button>
+      )}
     </div>
   );
 }

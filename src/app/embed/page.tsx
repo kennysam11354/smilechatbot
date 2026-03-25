@@ -12,7 +12,7 @@ export default function EmbedPage() {
 
   return (
     // Only the chat widget itself gets pointer-events, rest is transparent
-    <div style={{ pointerEvents: 'auto', display: 'inline-block' }}>
+    <div style={{ pointerEvents: 'auto', display: 'flex', justifyContent: 'flex-end', height: '100%', width: '100%' }}>
       <ChatWidget />
     </div>
   );
