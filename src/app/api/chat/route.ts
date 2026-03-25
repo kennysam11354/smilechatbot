@@ -5,10 +5,7 @@ import { join } from 'path';
 import { Resend } from 'resend';
 import { z } from 'zod';
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Load Manual
+// Load Manual at module level (static file - safe)
 const manualPath = join(process.cwd(), 'src/lib/ai/manual.md');
 const manualContent = readFileSync(manualPath, 'utf8');
 
@@ -54,22 +51,22 @@ ${manualContent}
       sendComplaint: tool({
         description: 'Send a complaint or inquiry to the Smile Handyman team via email.',
         parameters: z.object({
-          message: z.string().describe('The summarized information sentence: Name, Phone, Email, Issue.'),
+          message: z.string().describe('The summarized information: Name, Phone, Email, Issue.'),
         }),
         execute: async ({ message }) => {
           try {
-            const { data, error } = await resend.emails.send({
-              from: 'Smile Handyman AI <onboarding@resend.dev>', // Use verified domain later
+            // Initialize Resend lazily inside handler to avoid build-time errors
+            const resend = new Resend(process.env.RESEND_API_KEY);
+            const { error } = await resend.emails.send({
+              from: 'Smile Handyman AI <onboarding@resend.dev>',
               to: 'smilehandyman1000@gmail.com',
               subject: 'New Inquiry/Complaint from Chatbot',
               text: `A new inquiry has been escalated through the chatbot:\n\nSummary: ${message}\n\nSent at: ${new Date().toISOString()}`,
             });
-
             if (error) {
-                console.error('Resend Error:', error);
-                return { success: false, error: 'Failed to send email' };
+              console.error('Resend Error:', error);
+              return { success: false, error: 'Failed to send email' };
             }
-
             return { success: true, message: 'Your message has been sent successfully.' };
           } catch (err) {
             console.error('Email execution error:', err);
@@ -78,8 +75,6 @@ ${manualContent}
         },
       }),
     },
-    // Optional: Only allow tool calling after explicit user confirmation if needed
-    // but the system prompt already enforces "Wait for user to type Send"
   });
 
   return result.toDataStreamResponse();
