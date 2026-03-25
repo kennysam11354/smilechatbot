@@ -62,7 +62,7 @@ ${manualContent}
             const resend = new Resend(process.env.RESEND_API_KEY);
             const { error } = await resend.emails.send({
               from: 'Smile Handyman AI <onboarding@resend.dev>',
-              to: 'smilehandyman1000@gmail.com',
+              to: 'multizer@live.com',
               subject: 'New Inquiry/Complaint from Chatbot',
               text: `A new inquiry has been escalated through the chatbot:\n\nSummary: ${message}\n\nSent at: ${new Date().toISOString()}`,
             });
