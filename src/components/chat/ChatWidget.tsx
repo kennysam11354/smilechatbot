@@ -44,16 +44,7 @@ export default function ChatWidget() {
     }
   }, [messages, isLoading]);
 
-  // Focus input when window opens or loading finishes
-  useEffect(() => {
-    if (isOpen && !isLoading) {
-      // Add a slight delay to allow the window animation to complete
-      const timer = setTimeout(() => {
-        inputRef.current?.focus();
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen, isLoading]);
+
 
   const sendMessage = useCallback(async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -111,8 +102,8 @@ export default function ChatWidget() {
           }
         }
       }
-    } catch (err: any) {
-      if (err.name !== 'AbortError') {
+    } catch (err) {
+      if (err instanceof Error && err.name !== 'AbortError') {
         setMessages(prev => [...prev, {
           id: Date.now().toString(),
           role: 'assistant',
@@ -212,6 +203,7 @@ export default function ChatWidget() {
               <div className="flex gap-2">
                 <input
                   ref={inputRef}
+                  autoFocus
                   id="chat-input"
                   value={input}
                   onChange={e => setInput(e.target.value)}
