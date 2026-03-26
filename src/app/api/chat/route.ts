@@ -11,8 +11,6 @@ const manualContent = readFileSync(manualPath, 'utf8');
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
-  const userAgent = req.headers.get('user-agent') || '';
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 
   const systemInstructions = `
 You are a helpful, friendly, and professional assistant for "Smile Handyman" in Manhattan. 
@@ -38,12 +36,6 @@ If you encounter a complaint, a complex inquiry, or something not covered in the
 5. AFTER the tool runs, check the result:
    - If success: true → Tell the user clearly: "✅ Your message has been sent successfully! Our team will contact you soon."
    - If success: false → Tell the user: "❌ Sorry, there was an error sending your message. Please contact us directly at (917) 818-0994 or smilehandyman1000@gmail.com."
-
-### MOBILE LIMITATION:
-Current User Device: ${isMobile ? 'MOBILE' : 'DESKTOP'}
-If the user is on MOBILE and an escalation is needed:
-1. Explain that automatic submission is currently only for desktop.
-2. Instruct them to send an email manually to smilehandyman1000@gmail.com or text (917) 818-0994.
 
 ### MANUAL CONTENT:
 ${manualContent}
@@ -86,3 +78,4 @@ ${manualContent}
 
   return result.toDataStreamResponse();
 }
+
